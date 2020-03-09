@@ -1,3 +1,7 @@
+## 文档
+
+[https://kevin0z0.github.io/mydoc/](https://kevin0z0.github.io/mydoc/#/)
+
 ## 关于
 
 本项目基于[Binaryify](https://github.com/Binaryify/NeteaseCloudMusicApi)的Nodejs版本略微修改
