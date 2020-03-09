@@ -2,6 +2,10 @@
 
 [https://kevin0z0.github.io/mydoc/](https://kevin0z0.github.io/mydoc/#/)
 
+## 测试链接
+
+http://47.100.179.226:9090/
+
 ## 关于
 
 本项目基于[Binaryify](https://github.com/Binaryify/NeteaseCloudMusicApi)的Nodejs版本略微修改
