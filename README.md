@@ -45,7 +45,7 @@ search({"result":{"songs":[{"id":1407551413,"name":"麻雀","artists":[{"id":429
 
 ## 安装
 
-本项目基于Django3.0，只支持3.6及以上的版本运行
+本项目基于Django3.0，只支持python3.6及以上的版本运行
 
 ``` bash
 git clone https://github.com/Kevin0z0/Python_NetEaseMusicAPI.git
