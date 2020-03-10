@@ -68,7 +68,7 @@ def Http_Response(r, text, type="application/json,charset=UTF-8"):
             text = "{}={}".format(query["var"], text)
         elif query["cb"]:
             text = "{}({})".format(query["cb"], text)
-        type = "text/plain; charset=UTF-8"
+        type = "application/javascript; charset=UTF-8"
     if type == "":
         return HttpResponse(text)
     return HttpResponse(text, content_type=type)
