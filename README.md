@@ -23,6 +23,10 @@ http://music.dsb.ink/
 
 ## 新增
 
+### 小栗子
+
+[下载网易云歌曲（仅供测试）](https://github.com/Kevin0z0/Python_NetEaseMusicAPI/tree/master/examples)
+
 ### 支持直接用js引用api
 
 例: 
