@@ -72,19 +72,3 @@ def Http_Response(r, text, type="application/json,charset=UTF-8"):
     if type == "":
         return HttpResponse(text)
     return HttpResponse(text, content_type=type)
-
-
-def getFLAC(mid):
-    import requests
-    from base64 import b64encode
-    from Cryptodome.Cipher import DES
-    data = "wy_999_" + mid + ".flac"
-    key = bytes([36, 16, 93, 156, 78, 66, 218, 32])
-    iv = bytes([55, 183, 236, 79, 36, 99, 167, 56])
-    generator = DES.new(key, DES.MODE_CBC, iv)
-    pad = 8 - len(data) % 8
-    pad_str = ""
-    for _ in range(pad):
-        pad_str = pad_str + chr(pad)
-    result = b64encode(generator.encrypt((data + pad_str).encode()))
-    return requests.get("http://114.67.65.49/api/music/?type=url&key=" + b64encode(result).decode()).text
