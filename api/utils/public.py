@@ -34,7 +34,7 @@ def request_query(r, *args):
         info = loads(r.body)
     except:
         pass
-    for i in [*args]:
+    for i in args:
         if type(i) == list:
             j = i[1]
             i = i[0]
