@@ -1,6 +1,6 @@
 ## 文档
 
-[https://kevin0z0.github.io/mydoc/](https://kevin0z0.github.io/mydoc/#/)
+[https://kevin0z0.github.io/Python_NetEaseMusicAPI/#/](https://kevin0z0.github.io/Python_NetEaseMusicAPI/#/)
 
 ## 关于
 

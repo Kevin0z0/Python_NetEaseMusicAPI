@@ -1,10 +1,6 @@
 ## 文档
 
-[https://kevin0z0.github.io/mydoc/](https://kevin0z0.github.io/mydoc/#/)
-
-## 测试链接
-
-http://music.dsb.ink/
+[https://kevin0z0.github.io/Python_NetEaseMusicAPI/#/](https://kevin0z0.github.io/Python_NetEaseMusicAPI/#/)
 
 ## 关于
 
@@ -22,10 +18,6 @@ http://music.dsb.ink/
 [https://github.com/darknessomi/musicbox](https://github.com/darknessomi/musicbox)
 
 ## 新增
-
-### 小栗子
-
-[下载网易云歌曲（仅供测试）](https://github.com/Kevin0z0/Python_NetEaseMusicAPI/tree/master/examples)
 
 ### 支持直接用js引用api
 
@@ -49,7 +41,7 @@ search({"result":{"songs":[{"id":1407551413,"name":"麻雀","artists":[{"id":429
 
 ## 安装
 
-本项目基于Django3.0，只支持python3.6及以上的版本运行
+本项目基于Django3.0，只支持3.6及以上的版本运行
 
 ``` bash
 git clone https://github.com/Kevin0z0/Python_NetEaseMusicAPI.git
