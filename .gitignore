@@ -1,0 +1,5 @@
+cookies
+venv/
+.vscode/
+db.sqlite3
+.idea/

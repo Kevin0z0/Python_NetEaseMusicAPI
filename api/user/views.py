@@ -17,7 +17,8 @@ def login(request):
     if query["email"] == None:
         data = send(dict(phone=query["phone"],
                          password=query["password"],
-                         rememberLogin="true")).POST("weapi/login/cellphone")
+                         countrycode='86',
+                         rememberLogin="true")).POST("weapi/login/cellphone", {'os':'pc'})
     else:
         data = send(dict(username=query["email"],
                          password=query["password"],

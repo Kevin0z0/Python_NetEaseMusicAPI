@@ -1,4 +1,5 @@
 import requests
+from time import time
 from json import loads
 from random import randint
 from .public import readFile, getCookie
@@ -15,6 +16,7 @@ userAgents = [
     'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89;GameHelper',
     'Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A300 Safari/602.1',
     'Mozilla/5.0 (iPad; CPU OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A300 Safari/602.1',
+    'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BKK-AL10 Build/HONORBKK-AL10) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/10.6 Mobile Safari/537.36',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:46.0) Gecko/20100101 Firefox/46.0',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko) Version/10.1.1 Safari/603.2.4',
@@ -62,10 +64,9 @@ class send:
             data["csrf_token"] = cookie["__csrf"] if "__csrf" in cookie else ""
             return weEncrypt(data)
         elif self.encrypt_method == "eapi":
-            from time import time
             data["header"] = {
                 'osver': "",
-                "appver": "6.1.1",
+                "appver": "8.0.0",
                 "channel": "",
                 "deviceId": "",
                 "mobilename": "",
@@ -76,7 +77,9 @@ class send:
                 "requestId": str(int(time()*100))+"_0"+str(randint(100, 999)),
                 "__csrf": cookie["__csrf"] if "__csrf" in cookie else ""
             }
-            # self.headers = {**self.headers, **headers}
+            if "MUSIC_U" in cookie: data["header"]["MUSIC_U"] = cookie["MUSIC_U"]
+            if "MUSIC_A" in cookie: data["header"]["MUSIC_A"] = cookie["MUSIC_A"]
+            self.headers["Cookie"] = ''.join(map(lambda key: f"{key}={data['header'][key]};",data["header"]))
             return eEncrypt(self.url, data)
         return data
 

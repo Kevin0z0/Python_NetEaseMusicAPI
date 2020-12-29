@@ -1,0 +1,74 @@
+2020-12-29 21:14:29,448 [django.request:224] [log:log_response] [WARNING] Not Found: /favicon.ico
+2020-12-29 21:19:28,616 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/user/login
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/user/views.py", line 20, in login
+    countrycode=query["countrycode"] or '86',
+KeyError: 'countrycode'
+2020-12-29 21:19:30,438 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/user/login
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/user/views.py", line 20, in login
+    countrycode=query["countrycode"] or '86',
+KeyError: 'countrycode'
+2020-12-29 21:19:38,548 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/user/login
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/user/views.py", line 20, in login
+    countrycode=query["countrycode"] or '86',
+KeyError: 'countrycode'
+2020-12-29 21:19:54,188 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/user/login
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/user/views.py", line 20, in login
+    countrycode=query["countrycode"] or '86',
+KeyError: 'countrycode'
+2020-12-29 21:19:56,681 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/user/login
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/user/views.py", line 20, in login
+    countrycode=query["countrycode"] or '86',
+KeyError: 'countrycode'
+2020-12-29 22:03:34,766 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/playlist/update/desc
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/playlist/views.py", line 157, in update_desc
+    data = send(query, url="/api/playlist/desc/update", encrypt_method="eapi").POST(
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/utils/send.py", line 87, in POST
+    data=self.encrypt(self.data),
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/utils/send.py", line 80, in encrypt
+    if cookie["MUSIC_A"]: data["header"]["MUSIC_A"] = cookie["MUSIC_A"]
+KeyError: 'MUSIC_A'
+2020-12-29 22:04:25,418 [django.request:224] [log:log_response] [ERROR] Internal Server Error: /api/playlist/update/desc
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.8/dist-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/playlist/views.py", line 157, in update_desc
+    data = send(query, url="/api/playlist/desc/update", encrypt_method="eapi").POST(
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/utils/send.py", line 87, in POST
+    data=self.encrypt(self.data),
+  File "/mnt/c/Users/zkw/Desktop/附件/Python_NetEaseMusicAPI/api/utils/send.py", line 80, in encrypt
+    if cookie["MUSIC_A"]: data["header"]["MUSIC_A"] = cookie["MUSIC_A"]
+KeyError: 'MUSIC_A'
+2020-12-29 22:29:58,169 [django.request:224] [log:log_response] [WARNING] Not Found: /favicon.ico
+2020-12-29 22:48:50,542 [django.request:228] [log:log_response] [WARNING] Not Found: /favicon.ico
