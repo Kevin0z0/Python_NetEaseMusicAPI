@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .__init__ import *
 from requests import utils
 from json import dumps, loads
-
+from requests.models import Response
 
 def home(requset):
     return Http_Response("", "这是用户API", "")
@@ -15,12 +15,12 @@ def login(request):
     query["password"] = MD5(query["password"]) if query.pop(
         "md5") == "false" else query["password"]
     if query["email"] == None:
-        data = send(dict(phone=query["phone"],
+        data: Response = send(dict(phone=query["phone"],
                          password=query["password"],
                          countrycode='86',
                          rememberLogin="true")).POST("weapi/login/cellphone", {'os':'pc'})
     else:
-        data = send(dict(username=query["email"],
+        data: Response = send(dict(username=query["email"],
                          password=query["password"],
                          rememberLogin='true')).POST("weapi/login", {"os": "pc"})
     cookies = utils.dict_from_cookiejar(data.cookies)
@@ -130,6 +130,16 @@ def playlist(request):
                           ["limit", {"limit": 30}],
                           ["offset", {"offset": 0}])
     data = send(query).POST("weapi/user/playlist")
+    return Http_Response(request, data.text)
+
+
+def level(request):
+    query = request_query(request, "uid")
+    cookie = getCookie()
+    csrf = cookie["__csrf"] if "__csrf" in cookie else ""
+    data = send({"csrf_token": csrf}).POST(
+        "weapi/user/level"
+    )
     return Http_Response(request, data.text)
 
 

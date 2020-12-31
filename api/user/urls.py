@@ -17,6 +17,7 @@ urlpatterns = [
     path('detail', views.detail),
     path('playlist', views.playlist),
     path('album', views.album),
+    path('level', views.level),
     path('signin', views.signin),
     path('fm', views.fm),
     path('trash', views.trash),

@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+pycryptodomex = "*"
+Django = "*"
+coloredlogs = "*"
+celery = "*"
+redis = "*"
+gunicorn = "*"
+apscheduler = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

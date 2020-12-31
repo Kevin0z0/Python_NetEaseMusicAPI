@@ -42,7 +42,7 @@ CACHES = {
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
         'standard': {
             'format': '%(asctime)s [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s] %(message)s'}
@@ -56,7 +56,7 @@ LOGGING = {
             'include_html': True,
         },
         'default': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '{}/home/log/{}.log'.format(BASE_DIR, datetime.datetime.now().date()),
             'maxBytes': 1024 * 1024 * 5,
@@ -70,7 +70,7 @@ LOGGING = {
             'formatter': 'standard',
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
@@ -91,12 +91,12 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['default'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': False
         },
         'django.request': {
-            'handlers': ['request_handler'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': False,
         },
@@ -222,3 +222,8 @@ MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+
+CELERY_IMPORTS = (
+    'async_tasks.tasks',
+)

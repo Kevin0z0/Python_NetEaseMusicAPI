@@ -1,0 +1,21 @@
+version: '3.7'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: neserver
+    restart: always
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile_task
+    container_name: neworker
+    restart: always
+

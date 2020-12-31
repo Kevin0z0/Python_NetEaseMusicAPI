@@ -7,6 +7,7 @@ urlpatterns = [
     path('song/', include('api.song.urls')),
     path('playlist/', include('api.playlist.urls')),
     path('artists/', include('api.artists.urls')),
+    path('tasks/', include('api.tasks.urls')),
     path('dj/', include('api.dj.urls')),
     re_path(r'^search[/]*', include('api.search.urls')),
     path('mv/', include('api.mv.urls')),

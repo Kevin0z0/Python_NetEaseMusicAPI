@@ -3,6 +3,12 @@
 import os
 import sys
 
+import coloredlogs
+
+os.environ['COLOREDLOGS_AUTO_INSTALL'] = 'true'
+
+coloredlogs.auto_install()
+
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'netease.settings')
