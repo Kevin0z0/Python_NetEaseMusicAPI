@@ -31,11 +31,12 @@ def task():
     if resp.status_code != 200:
         logging.error('failed to login')
         raise HTTPError
+    requests.get(base_url + 'user/signin')
     resp = requests.get(base_url + 'user/level')
     logging.info('current level:' + json.dumps(json.loads(resp.text), indent=2))
 
     trigger_task_resp = requests.get(base_url + 'tasks/task')
-
+    logging.info('current level:' + json.dumps(json.loads(trigger_task_resp.text), indent=2))
     resp = requests.get(base_url + 'user/level')
     logging.info('after task level:' + json.dumps(json.loads(resp.text), indent=2))
 
