@@ -5,13 +5,13 @@ import sys
 
 import coloredlogs
 
-os.environ['COLOREDLOGS_AUTO_INSTALL'] = 'true'
+os.environ["COLOREDLOGS_AUTO_INSTALL"] = "true"
 
 coloredlogs.auto_install()
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'netease.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "netease.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -23,5 +23,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
