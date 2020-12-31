@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -44,7 +43,8 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "standard": {
-            "format": "%(asctime)s [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s] %(message)s"
+            "format":
+            "%(asctime)s [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s] %(message)s"
         }
     },
     "filters": {},
@@ -55,22 +55,30 @@ LOGGING = {
             "include_html": True,
         },
         "default": {
-            "level": "INFO",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": "{}/home/log/{}.log".format(
-                BASE_DIR, datetime.datetime.now().date()
-            ),
-            "maxBytes": 1024 * 1024 * 5,
-            "formatter": "standard",
+            "level":
+            "INFO",
+            "class":
+            "logging.handlers.RotatingFileHandler",
+            "filename":
+            "{}/home/log/{}.log".format(BASE_DIR,
+                                        datetime.datetime.now().date()),
+            "maxBytes":
+            1024 * 1024 * 5,
+            "formatter":
+            "standard",
         },
         "error": {
-            "level": "ERROR",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": "{}/home/log/Error_{}.log".format(
-                BASE_DIR, datetime.datetime.now().date()
-            ),
-            "maxBytes": 1024 * 1024 * 5,
-            "formatter": "standard",
+            "level":
+            "ERROR",
+            "class":
+            "logging.handlers.RotatingFileHandler",
+            "filename":
+            "{}/home/log/Error_{}.log".format(BASE_DIR,
+                                              datetime.datetime.now().date()),
+            "maxBytes":
+            1024 * 1024 * 5,
+            "formatter":
+            "standard",
         },
         "console": {
             "level": "INFO",
@@ -78,26 +86,39 @@ LOGGING = {
             "formatter": "standard",
         },
         "request_handler": {
-            "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": "{}/home/log/Request_{}.log".format(
-                BASE_DIR, datetime.datetime.now().date()
-            ),
-            "maxBytes": 1024 * 1024 * 5,
-            "formatter": "standard",
+            "level":
+            "DEBUG",
+            "class":
+            "logging.handlers.RotatingFileHandler",
+            "filename":
+            "{}/home/log/Request_{}.log".format(
+                BASE_DIR,
+                datetime.datetime.now().date()),
+            "maxBytes":
+            1024 * 1024 * 5,
+            "formatter":
+            "standard",
         },
         "scripts_handler": {
-            "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": "{}/home/log/Script_{}.log".format(
-                BASE_DIR, datetime.datetime.now().date()
-            ),
-            "maxBytes": 1024 * 1024 * 5,
-            "formatter": "standard",
+            "level":
+            "DEBUG",
+            "class":
+            "logging.handlers.RotatingFileHandler",
+            "filename":
+            "{}/home/log/Script_{}.log".format(BASE_DIR,
+                                               datetime.datetime.now().date()),
+            "maxBytes":
+            1024 * 1024 * 5,
+            "formatter":
+            "standard",
         },
     },
     "loggers": {
-        "django": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
+        "django": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False
+        },
         "django.request": {
             "handlers": ["console"],
             "level": "DEBUG",
@@ -108,14 +129,22 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
-        "console": {"handlers": ["console"], "level": "DEBUG", "propagate": True},
+        "console": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True
+        },
         # API/Views 模块的日志处理
         "views": {
             "handlers": ["default", "error"],
             "level": "DEBUG",
             "propagate": True,
         },
-        "util": {"handlers": ["error"], "level": "ERROR", "propagate": True},
+        "util": {
+            "handlers": ["error"],
+            "level": "ERROR",
+            "propagate": True
+        },
     },
 }
 
@@ -163,7 +192,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "netease.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -174,25 +202,27 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -216,5 +246,4 @@ MEDIA_URL = "/images/"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-
-CELERY_IMPORTS = ("async_tasks.tasks",)
+CELERY_IMPORTS = ("async_tasks.tasks", )

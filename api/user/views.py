@@ -14,12 +14,12 @@ def home(requset):
 
 def login(request):
     # 用户登录
-    query = request_query(
-        request, "phone", "email", "password", ["md5", {"md5": "false"}]
-    )
-    query["password"] = (
-        MD5(query["password"]) if query.pop("md5") == "false" else query["password"]
-    )
+    query = request_query(request, "phone", "email", "password",
+                          ["md5", {
+                              "md5": "false"
+                          }])
+    query["password"] = (MD5(query["password"])
+                         if query.pop("md5") == "false" else query["password"])
     if query["email"] == None:
         data: Response = send(
             dict(
@@ -27,16 +27,14 @@ def login(request):
                 password=query["password"],
                 countrycode="86",
                 rememberLogin="true",
-            )
-        ).POST("weapi/login/cellphone", {"os": "pc"})
+            )).POST("weapi/login/cellphone", {"os": "pc"})
     else:
         data: Response = send(
             dict(
                 username=query["email"],
                 password=query["password"],
                 rememberLogin="true",
-            )
-        ).POST("weapi/login", {"os": "pc"})
+            )).POST("weapi/login", {"os": "pc"})
     cookies = utils.dict_from_cookiejar(data.cookies)
     saveFile("cookies", cookies)
     return Http_Response(request, data.text)
@@ -44,16 +42,20 @@ def login(request):
 
 def sent(request):
     # 发送验证码
-    query = request_query(request, ["phone", "cellphone"], ["ctdoce", {"ctcode": 86}])
+    query = request_query(request, ["phone", "cellphone"],
+                          ["ctdoce", {
+                              "ctcode": 86
+                          }])
     data = send(query).POST("weapi/sms/captcha/sent")
     return Http_Response(request, data.text)
 
 
 def verify(request):
     # 验证验证码
-    query = request_query(
-        request, ["phone", "cellphone"], ["ctdoce", {"ctcode": 86}], ["code", "captcha"]
-    )
+    query = request_query(request, ["phone", "cellphone"],
+                          ["ctdoce", {
+                              "ctcode": 86
+                          }], ["code", "captcha"])
     data = send(query).POST("weapi/sms/captcha/verify")
     return Http_Response(request, data.text)
 
@@ -66,23 +68,24 @@ def register(request):
         "phone",
         "password",
         "nickname",
-        ["md5", {"md5": "false"}],
+        ["md5", {
+            "md5": "false"
+        }],
     )
-    query["password"] = (
-        MD5(query["password"]) if query.pop("md5") == "false" else query["password"]
-    )
+    query["password"] = (MD5(query["password"])
+                         if query.pop("md5") == "false" else query["password"])
     data = send(query).POST("weapi/register/cellphone")
     return Http_Response(request, data.text)
 
 
 def checkphone(request):
     # 检测手机号码是否已注册
-    query = request_query(
-        request, ["phone", "cellphone"], ["ctcode", {"countrycode": 86}]
-    )
+    query = request_query(request, ["phone", "cellphone"],
+                          ["ctcode", {
+                              "countrycode": 86
+                          }])
     data = send(query, "eapi", url="/api/cellphone/existence/check").POST(
-        "http://music.163.com/eapi/cellphone/existence/check"
-    )
+        "http://music.163.com/eapi/cellphone/existence/check")
     return Http_Response(request, data.text)
 
 
@@ -90,8 +93,7 @@ def initname(request):
     # 初始化昵称
     query = request_query(request, ["name", "nickname"])
     data = send(query, "eapi", url="/api/activate/initProfile").POST(
-        "http://music.163.com/eapi/activate/initProfile"
-    )
+        "http://music.163.com/eapi/activate/initProfile")
     return Http_Response(request, data.text)
 
 
@@ -102,7 +104,9 @@ def rebind(request):
         ["oldcode", "oldcaptcha"],
         ["newcode", "captcha"],
         "phone",
-        ["ctcode", {"ctcode": 86}],
+        ["ctcode", {
+            "ctcode": 86
+        }],
     )
     data = send(query).POST("weapi/user/replaceCellphone")
     return Http_Response(request, data.text)
@@ -142,15 +146,19 @@ def detail(request):
     query = request_query(request, "uid")
     cookie = getCookie()
     csrf = cookie["__csrf"] if "__csrf" in cookie else ""
-    data = send({"csrf_token": csrf}).POST("weapi/v1/user/detail/" + query["uid"])
+    data = send({
+        "csrf_token": csrf
+    }).POST("weapi/v1/user/detail/" + query["uid"])
     return Http_Response(request, data.text)
 
 
 def playlist(request):
     # 用户歌单
-    query = request_query(
-        request, "uid", ["limit", {"limit": 30}], ["offset", {"offset": 0}]
-    )
+    query = request_query(request, "uid", ["limit", {
+        "limit": 30
+    }], ["offset", {
+        "offset": 0
+    }])
     data = send(query).POST("weapi/user/playlist")
     return Http_Response(request, data.text)
 
@@ -165,7 +173,11 @@ def level(request):
 
 def album(request):
     # 已购专辑
-    query = request_query(request, ["limit", {"limit": 30}], ["offset", {"offset": 0}])
+    query = request_query(request, ["limit", {
+        "limit": 30
+    }], ["offset", {
+        "offset": 0
+    }])
     query["total"] = True
     data = send(query).POST("weapi/digitalAlbum/purchased")
     return Http_Response(request, data.text)
@@ -195,9 +207,8 @@ def fm(request):
 def trash(request):
     # FM垃圾桶
     query = request_query(request, ["id", "songId"])
-    data = send(query).POST(
-        "weapi/radio/trash/add?alg=RT&songId=" + query["songId"] + "&time=25"
-    )
+    data = send(query).POST("weapi/radio/trash/add?alg=RT&songId=" +
+                            query["songId"] + "&time=25")
     return Http_Response(request, data.text)
 
 
@@ -208,9 +219,10 @@ def likelist(request):
     query["offset"] = 0
     data = loads(send(query).POST("weapi/user/playlist").text)
     query = {"id": data["playlist"][0]["id"], "s": 0, "n": 10000}
-    data = send(
-        {"url": BASE_URL + "api/v3/playlist/detail", "params": query}, "linuxapi"
-    ).POST("")
+    data = send({
+        "url": BASE_URL + "api/v3/playlist/detail",
+        "params": query
+    }, "linuxapi").POST("")
     return Http_Response(request, data)
 
 
@@ -236,9 +248,11 @@ def radio(request):
 
 def dj(request):
     # 获取用户创建的电台的详细信息
-    query = request_query(
-        request, "uid", ["limit", {"limit": 30}], ["offset", {"offset": 0}]
-    )
+    query = request_query(request, "uid", ["limit", {
+        "limit": 30
+    }], ["offset", {
+        "offset": 0
+    }])
     uid = query.pop("uid")
     data = send(query).POST("weapi/dj/program/" + uid)
     return Http_Response(request, data.text)
@@ -246,9 +260,11 @@ def dj(request):
 
 def follows(request):
     # 获取用户关注列表
-    query = request_query(
-        request, "uid", ["limit", {"limit": 30}], ["offset", {"offset": 0}]
-    )
+    query = request_query(request, "uid", ["limit", {
+        "limit": 30
+    }], ["offset", {
+        "offset": 0
+    }])
     uid = query.pop("uid")
     query["order"] = True
     data = send(query).POST("weapi/user/getfollows/" + uid)
@@ -257,9 +273,11 @@ def follows(request):
 
 def fans(request):
     # 获取用户粉丝
-    query = request_query(
-        request, ["uid", "userId"], ["limit", {"limit": 30}], ["offset", {"offset": 0}]
-    )
+    query = request_query(request, ["uid", "userId"], ["limit", {
+        "limit": 30
+    }], ["offset", {
+        "offset": 0
+    }])
     query["total"] = True
     data = send(query).POST("weapi/user/getfolloweds")
     return Http_Response(request, data.text)
@@ -267,9 +285,11 @@ def fans(request):
 
 def event(request):
     # 获取用户动态
-    query = request_query(
-        request, "uid", ["time", {"time": -1}], ["limit", {"limit": 30}]
-    )
+    query = request_query(request, "uid", ["time", {
+        "time": -1
+    }], ["limit", {
+        "limit": 30
+    }])
     query["getcounts"] = True
     query["total"] = True
     uid = query.pop("uid")
@@ -284,9 +304,11 @@ def event(request):
 
 def events(request):
     # 获取动态消息
-    query = request_query(
-        request, ["time", {"lasttime": -1}], ["limit", {"pagesize": 30}]
-    )
+    query = request_query(request, ["time", {
+        "lasttime": -1
+    }], ["limit", {
+        "pagesize": 30
+    }])
     data = loads(send(query).POST("weapi/v1/event/get").text)
     for i in data["event"]:
         try:
@@ -298,9 +320,10 @@ def events(request):
 
 def event_forward(request):
     # 转发用户动态
-    query = request_query(
-        request, ["uid", "eventUserId"], ["evid", "id"], ["content", {"forwards": ""}]
-    )
+    query = request_query(request, ["uid", "eventUserId"], ["evid", "id"],
+                          ["content", {
+                              "forwards": ""
+                          }])
     data = send(query).POST("weapi/event/forward", {"os": "pc"})
     return Http_Response(request, data.text)
 
@@ -317,9 +340,15 @@ def event_share(request):
     query = request_query(
         request,
         # song,playlist,mv,djprogram,djradio
-        ["type", {"type": "song"}],
-        ["msg", {"msg": ""}],
-        ["id", {"id": ""}],
+        ["type", {
+            "type": "song"
+        }],
+        ["msg", {
+            "msg": ""
+        }],
+        ["id", {
+            "id": ""
+        }],
     )
     data = send(query).POST("weapi/share/friends/resource")
     return Http_Response(request, data.text)
@@ -329,15 +358,18 @@ def follow(request):
     # 关注 / 取消关注用户
     query = request_query(request, ["t", {"t": 1}], "uid")
     query["t"] = "follow" if query["t"] == "1" else "delfollow"
-    data = send().POST(
-        "weapi/user/{}/{}".format(query["t"], query["uid"]), {"os": "pc"}
-    )
+    data = send().POST("weapi/user/{}/{}".format(query["t"], query["uid"]),
+                       {"os": "pc"})
     return Http_Response(request, data.text)
 
 
 def cloud(request):
     # 获取云盘歌曲id
-    query = request_query(request, ["limit", {"limit": 30}], ["offset", {"offset": 0}])
+    query = request_query(request, ["limit", {
+        "limit": 30
+    }], ["offset", {
+        "offset": 0
+    }])
     data = send(query).POST("weapi/v1/cloud/get")
     return Http_Response(request, data.text)
 
@@ -375,9 +407,8 @@ def getarea(request):
 
 def update(request):
     # 更新用户信息
-    query = request_query(
-        request, "gender", "province", "city", "birthday", "nickname", "signature"
-    )
+    query = request_query(request, "gender", "province", "city", "birthday",
+                          "nickname", "signature")
     query["avatarImgId"] = "0"
     data = send(query).POST("weapi/user/profile/update")
     return Http_Response(request, data.text)
@@ -391,7 +422,11 @@ def star(request):
         "5": "R_VI_62_",  # 视频
         "6": "A_EV_2_",  # 动态
     }
-    query = request_query(request, ["t", {"t": 1}], ["type", {"type": 1}], "id")
+    query = request_query(request, ["t", {
+        "t": 1
+    }], ["type", {
+        "type": 1
+    }], "id")
     tp = types[query["type"]]
     if tp == "A_EV_2_":
         info = {"threadId": query["id"]}
