@@ -1,3 +1,4 @@
+from .tasks import taskA
 import os
 
 from celery import Celery
@@ -14,7 +15,8 @@ test_backend = 'redis://pvgl34353119a.apj.global.corp.sap:6379/0'
 
 # from django.conf import settings  # noqa
 
-celery_app = Celery('netease', broker=test_broker, backend=test_backend, include=['async_tasks.tasks'])
+celery_app = Celery('netease', broker=test_broker,
+                    backend=test_backend, include=['async_tasks.tasks'])
 
 celery_app.conf.update(
     result_expires=3600,
@@ -28,5 +30,3 @@ celery_app.conf.update(
 
 # if __name__ == "__main__":
 #     celery_app.start()
-
-from .tasks import taskA

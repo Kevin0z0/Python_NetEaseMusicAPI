@@ -17,8 +17,9 @@ import logging
 import json
 
 logging.basicConfig(level=logging.INFO,
-                format='%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s %(message)s',
-                datefmt='%Y-%m-%d %H:%M:%S')
+                    format='%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
+
 
 def task():
     base_url = 'http://neserver/api/'
@@ -26,19 +27,23 @@ def task():
     if resp.status_code != 200:
         email = os.environ.get('MUSIC_EMAIL')
         password = os.environ.get('MUSIC_PASSWORD')
-        requests.get(base_url + f'user/login?email={email}&password={password}')
+        requests.get(
+            base_url + f'user/login?email={email}&password={password}')
     resp = requests.get(base_url + 'user/status')
     if resp.status_code != 200:
         logging.error('failed to login')
         raise HTTPError
     requests.get(base_url + 'user/signin')
     resp = requests.get(base_url + 'user/level')
-    logging.info('current level:' + json.dumps(json.loads(resp.text), indent=2))
+    logging.info('current level:' +
+                 json.dumps(json.loads(resp.text), indent=2))
 
     trigger_task_resp = requests.get(base_url + 'tasks/task')
-    logging.info('current level:' + json.dumps(json.loads(trigger_task_resp.text), indent=2))
+    logging.info('current level:' +
+                 json.dumps(json.loads(trigger_task_resp.text), indent=2))
     resp = requests.get(base_url + 'user/level')
-    logging.info('after task level:' + json.dumps(json.loads(resp.text), indent=2))
+    logging.info('after task level:' +
+                 json.dumps(json.loads(resp.text), indent=2))
 
 
 if __name__ == "__main__":
@@ -55,4 +60,3 @@ if __name__ == "__main__":
     sched.start()
     # pass
     # task()
-

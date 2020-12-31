@@ -4,6 +4,7 @@ from requests import utils
 from json import dumps, loads
 from requests.models import Response
 
+
 def home(requset):
     return Http_Response("", "这是用户API", "")
 
@@ -16,13 +17,13 @@ def login(request):
         "md5") == "false" else query["password"]
     if query["email"] == None:
         data: Response = send(dict(phone=query["phone"],
-                         password=query["password"],
-                         countrycode='86',
-                         rememberLogin="true")).POST("weapi/login/cellphone", {'os':'pc'})
+                                   password=query["password"],
+                                   countrycode='86',
+                                   rememberLogin="true")).POST("weapi/login/cellphone", {'os': 'pc'})
     else:
         data: Response = send(dict(username=query["email"],
-                         password=query["password"],
-                         rememberLogin='true')).POST("weapi/login", {"os": "pc"})
+                                   password=query["password"],
+                                   rememberLogin='true')).POST("weapi/login", {"os": "pc"})
     cookies = utils.dict_from_cookiejar(data.cookies)
     saveFile("cookies", cookies)
     return Http_Response(request, data.text)

@@ -13,7 +13,8 @@ def taskA():
     if resp.status_code != 200:
         email = os.environ.get('MUSIC_EMAIL')
         password = os.environ.get('MUSIC_PASSWORD')
-        requests.get(base_url + f'user/login?email={email}&password={password}')
+        requests.get(
+            base_url + f'user/login?email={email}&password={password}')
     resp = requests.get(base_url + 'user/status')
     if resp.status_code != 200:
         logging.error('failed to login')
@@ -25,4 +26,3 @@ def taskA():
 
     resp = requests.get(base_url + 'user/level')
     logging.info('current level:' + json.dumps(resp.json, indent=2))
-
