@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 networks:
   default:
@@ -18,4 +18,3 @@ services:
       dockerfile: Dockerfile_task
     container_name: neworker
     restart: always
-
