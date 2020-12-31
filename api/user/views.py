@@ -1,4 +1,5 @@
-from json import dumps, loads
+from json import dumps
+from json import loads
 
 from django.shortcuts import render
 from requests import utils

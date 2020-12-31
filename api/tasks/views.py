@@ -5,7 +5,11 @@ from typing import List
 
 from django.shortcuts import render
 
-from .__init__ import BASE_URL, Http_Response, getCookie, request_query, send
+from .__init__ import BASE_URL
+from .__init__ import getCookie
+from .__init__ import Http_Response
+from .__init__ import request_query
+from .__init__ import send
 
 
 def home(request):

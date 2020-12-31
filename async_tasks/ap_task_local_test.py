@@ -4,13 +4,13 @@
 # @Author  : Your Name (you@example.org)
 # @Link    : link
 # @Version : 1.0.0
-
 import json
 import logging
 import os
 
 import requests
-from apscheduler.executors.pool import ProcessPoolExecutor, ThreadPoolExecutor
+from apscheduler.executors.pool import ProcessPoolExecutor
+from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.schedulers.blocking import BlockingScheduler
 from requests.models import HTTPError
 
