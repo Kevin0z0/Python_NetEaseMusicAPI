@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from .__init__ import *
-from requests import utils
 from json import dumps, loads
+
+from django.shortcuts import render
+from requests import utils
 from requests.models import Response
+
+from .__init__ import *
 
 
 def home(requset):
@@ -114,7 +116,7 @@ def logout(request):
 
 def status(request):
     # 登录状态
-    from re import findall, S, M
+    from re import M, S, findall
 
     data = send().GET("?").text
     try:

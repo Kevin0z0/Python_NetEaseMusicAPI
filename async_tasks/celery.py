@@ -1,8 +1,8 @@
-from .tasks import taskA
 import os
 
 from celery import Celery
 
+from .tasks import taskA
 
 broker = "redis://redis:6379/0"
 backend = "redis://redis:6379/0"

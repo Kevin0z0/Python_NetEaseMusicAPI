@@ -1,9 +1,10 @@
-from requests.models import HTTPError
-from celery import shared_task
-import requests
-import os
-import logging
 import json
+import logging
+import os
+
+import requests
+from celery import shared_task
+from requests.models import HTTPError
 
 
 @shared_task

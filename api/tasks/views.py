@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from .__init__ import Http_Response, request_query, send, BASE_URL, getCookie
 import json
 import logging
-from typing import List
 import random
+from typing import List
+
+from django.shortcuts import render
+
+from .__init__ import BASE_URL, Http_Response, getCookie, request_query, send
 
 
 def home(request):
