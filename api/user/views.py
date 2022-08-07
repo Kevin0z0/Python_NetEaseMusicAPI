@@ -28,6 +28,15 @@ def login(request):
     return Http_Response(request, data.text)
 
 
+def cellphone(request):
+    query = request_query(request, "phone", ["code", "captcha"], ["ctcode", {"countrycode": 86}])
+    query['rememberLogin'] = "true"
+    data = send(query).POST("weapi/login/cellphone")
+    cookies = utils.dict_from_cookiejar(data.cookies)
+    saveFile("cookies", cookies)
+    return Http_Response(request, data.text)
+
+
 def sent(request):
     # 发送验证码
     query = request_query(request, ["phone", "cellphone"],
